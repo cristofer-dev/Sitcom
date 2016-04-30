@@ -2,7 +2,7 @@
 
 class ContratoModel {
     
-    function __construct(argument){
+    function __construct(){
         
     }
 }
@@ -10,7 +10,7 @@ class ContratoModel {
 
 class ContratoView {
     
-    function __construct(argument){
+    function __construct(){
         
     }
 }
@@ -18,8 +18,14 @@ class ContratoView {
 
 class ContratoController {
     
-    function __construct(argument){
-        
+    function __construct(){
+        $this->model = new ContratoModel();
+        $this->view =  new ContratoView();
+    }
+
+    function agregar(){
+        print_r("Agregando");
+
     }
 }
 
