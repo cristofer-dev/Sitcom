@@ -3,7 +3,9 @@
 class ContratoModel {
     
     function __construct(){
-        
+        $this->contrato_id = 0;
+        $this->denominacion = '';
+        $this->fecha = '';
     }
 }
 
