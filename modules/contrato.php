@@ -3,15 +3,17 @@
 class ContratoModel {
     
     function __construct(){
-        
+        $this->contrato_id = 0;
+        $this->denominacion = '';
+        $this->fecha = '';
     }
 }
 
 
 class ContratoView {
     
-    function __construct(){
-        
+    function agregar(){
+        print_r("Form Agregar");
     }
 }
 
@@ -24,7 +26,7 @@ class ContratoController {
     }
 
     function agregar(){
-        print_r("Agregando");
+        $this->view->agregar();
 
     }
 }
