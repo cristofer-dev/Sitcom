@@ -12,8 +12,8 @@ class ContratoModel {
 
 class ContratoView {
     
-    function __construct(){
-        
+    function agregar(){
+        print_r("Form Agregar");
     }
 }
 
@@ -26,7 +26,7 @@ class ContratoController {
     }
 
     function agregar(){
-        print_r("Agregando");
+        $this->view->agregar();
 
     }
 }
