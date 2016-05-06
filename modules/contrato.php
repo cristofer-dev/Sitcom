@@ -13,7 +13,14 @@ class ContratoModel {
 class ContratoView {
     
     function agregar(){
-        print_r("Form Agregar");
+        
+        $html = file_get_contents("static/html/contrato_agregar.html");
+        $html_base = file_get_contents("static/html/base.html");
+        $render = str_replace(
+            "{CONTENIDO}", 
+            $html, 
+            $html_base);
+        print $render;
     }
 }
 
