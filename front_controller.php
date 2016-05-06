@@ -1,5 +1,6 @@
 <?php 
 require_once "settings.php";
+require_once "core/db_layer.php";
 
 $solicitud = $_SERVER['REQUEST_URI'];
 $array = explode("/", $solicitud);
