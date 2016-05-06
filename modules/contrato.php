@@ -7,6 +7,13 @@ class ContratoModel {
         $this->denominacion = '';
         $this->fecha = '';
     }
+
+    function insert(){
+        $sql = "INSERT INTO contrato (denominacion, fecha)
+                VALUES (?,?)";
+        $datos = array($this->denominacion, $this->fecha);
+        $this->contrato_id = db($sql,$datos);
+    }
 }
 
 
@@ -41,8 +48,7 @@ class ContratoController {
 
         $this->model->denominacion = $denominacion;
         $this->model->fecha = $fecha;
-
-        print_r($this->model);
+        $this->model->insert();
     }
 }
 
