@@ -34,7 +34,15 @@ class ContratoController {
 
     function agregar(){
         $this->view->agregar();
+    }
 
+    function guardar(){        
+        extract($_POST);
+
+        $this->model->denominacion = $denominacion;
+        $this->model->fecha = $fecha;
+
+        print_r($this->model);
     }
 }
 
