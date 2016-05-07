@@ -42,8 +42,27 @@ class ContratoView {
         print $render;
     }
 
-    function listar(){
-
+    function listar($contratos){
+        $html = file_get_contents("static/html/contrato_listar.html");
+        $html_base = file_get_contents("static/html/base.html");
+        $regex = "/<!--fila-->(.|\n){1,}<!--fila-->/";
+        preg_match($regex, $html, $coincidencias);
+        $fragmento_html = @$coincidencias[0];
+        $html_aux = '';
+        foreach ($contratos as $contrato) {
+            settype($contrato, 'array');
+            $comodines = array_keys($contrato);
+            foreach($comodines as &$comodin) $comodin = "{" . $comodin . "}";
+            $valores = array_values($contrato);
+            $html_aux .= str_replace($comodines, $valores, $fragmento_html);
+        }
+        $render_contratos = str_replace($fragmento_html, $html_aux, $html);
+        $html_base = file_get_contents("static/html/base.html");
+        $render = str_replace(
+            '{CONTENIDO}', 
+            $render_contratos, 
+            $html_base);
+        print $render;
     }
 }
 
