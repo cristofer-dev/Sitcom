@@ -14,6 +14,18 @@ class ContratoModel {
         $datos = array($this->denominacion, $this->fecha);
         $this->contrato_id = db($sql,$datos);
     }
+
+    function select(){
+        $sql = "SELECT denominacion, fecha
+                FROM contrato 
+                WHERE contrato_id = ?";
+        $datos = array($this->contrato_id);
+        $resultados = db($sql,$datos);
+        foreach ($resultados[0] as $key => $value) {
+            $this->$key = $value;
+        }
+    }
+
 }
 
 
@@ -28,6 +40,10 @@ class ContratoView {
             $html, 
             $html_base);
         print $render;
+    }
+
+    function listar(){
+
     }
 }
 
@@ -49,10 +65,13 @@ class ContratoController {
         $this->model->denominacion = $denominacion;
         $this->model->fecha = $fecha;
         $this->model->insert();
+        $this->view->listar();
     }
 
     function listar(){
-        echo "listar";
+        $contratos = new CollectorObject();
+        $contratos->get('contrato');
+        $this->view->listar($contratos->collection);  
     }
 }
 
