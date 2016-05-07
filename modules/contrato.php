@@ -50,6 +50,10 @@ class ContratoController {
         $this->model->fecha = $fecha;
         $this->model->insert();
     }
+
+    function listar(){
+        echo "listar";
+    }
 }
 
 
