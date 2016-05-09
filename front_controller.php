@@ -17,7 +17,7 @@ $file = "modules/".strtolower($modulo).".php";
 if (file_exists($file)) require_once $file;
 $c = ucwords($modulo)."Controller";
 if (class_exists($c)) $controller = new $c();
-if (method_exists($c, $recurso)) $controller->$recurso();
+if (method_exists($c, $recurso)) $controller->$recurso($arg);
 
 
 ?>

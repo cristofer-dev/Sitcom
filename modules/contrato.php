@@ -26,6 +26,12 @@ class ContratoModel {
         }
     }
 
+    function delete(){
+        $sql = "DELETE FROM contrato WHERE contrato_id=?";
+        $datos = array($this->contrato_id);
+        db($sql,$datos);
+    }
+
 }
 
 
@@ -91,6 +97,12 @@ class ContratoController {
         $contratos = new CollectorObject();
         $contratos->get('contrato');
         $this->view->listar($contratos->collection);  
+    }
+
+    function eliminar($id = 0){
+        $this->model->contrato_id = $id;
+        $this->model->delete();
+        $this->listar();
     }
 }
 
