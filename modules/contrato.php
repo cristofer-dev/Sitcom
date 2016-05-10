@@ -100,6 +100,24 @@ class ContratoView {
             $html_base);
         print $render;
     }
+
+    function ver($contrato = null){        
+        $html = file_get_contents("static/html/contrato_ver.html");
+        $html_base = file_get_contents("static/html/base.html");
+
+        settype($contrato, 'array');
+        $comodines = array_keys($contrato);
+        $valores = array_values($contrato);
+        foreach ($comodines as &$valor) $valor = "{{$valor}}";
+
+        $html = str_replace($comodines, $valores, $html);
+
+        $render = str_replace(
+            "{CONTENIDO}", 
+            $html, 
+            $html_base);
+        print $render;
+    }
 }
 
 
@@ -149,6 +167,12 @@ class ContratoController {
         print_r($this->model);
         $this->model->update();
         $this->listar();
+    }
+
+    function ver($id){
+        $this->model->contrato_id = $id;
+        $this->model->select();
+        $this->view->ver($this->model);
     }
 }
 
